@@ -17,13 +17,13 @@
 - Siendo A1, A2, A3, B1, B2 y B3 caracteristicas de los mostros, las As son caracteristicas de un mostro las Bs, de otro.
 
 ### mundoChiquito()
-- Termino compuesto que encuentra todas las ternas que puede producir ternaMundoChiquito y las guarda en la lista Terna.
-- Luego llama imprimirPorLinea para imprimir las ternas en Terna.
+- Termino compuesto que invoca findall para encontrar todas las ternas que puede producir ternaMundoChiquito y las guarda en la lista Terna.
+- Luego invoca imprimirPorLinea para imprimir las ternas en Terna.
 
 ### imprimirPorLinea([[X, Y, Z] | Cola])
-- Predicado que imprime por linea la lista de ternas encontradas en ternaMundoChiquito con caso base y caso recursivo.
+- Termino compuesto que imprime por linea la lista de ternas encontradas en ternaMundoChiquito con caso base y caso recursivo.
 - El caso base es para listas vacias.
-- El caso recursivo toma la cabeza de la lista con los mostros X, Y y Z, los imprime en el formato y llama recusrivamente con la Cola de la lista.
+- El caso recursivo toma la cabeza de la lista con los mostros X, Y y Z, los imprime en el formato y se invoca recusrivamente con la Cola de la lista.
 
 ### agregarMostro
 - Termino compuesto que solicita al usuario (con read y format) los datos para un nuevo mostro, los va verificando mientras son ingresados bajo ciertas condiciones, da un mensaje de error cuando alguna condicion no se cumple, y da un mensaje donde el usuario verifica los datos del monstruo y luego de la verificaion lo agrega al inicio de la base de conocimientos (con asserta).
@@ -32,3 +32,9 @@
     - el nivel es un número entero entre 1 y 12
     - el poder es un número entero múltiplo de 50
     - el atributo puede ser cualquiera entre agua, fuego, viento, tierra, luz, oscuridad o divino
+
+### nombreRepetido
+- Termino compuesto que revisa si el nombre del nuevo mostro esta repetido, para ello invoca findall para tener la lista Mostros con los nombres de todos los mostros.
+- El caso base es para listas vacias, ya sea porque no hay mostros en la base de conocimientos o porque la recursion llego al final de la lista. Devolveria false.
+- El caso donde la cabeza de la lista coincide con el nombre buscado termina la busqueda y devolveria true.
+- El caso recursivo se invoca a si misma para revisar si el nombre esta en la Cola de la lista.

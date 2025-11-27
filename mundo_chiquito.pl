@@ -63,14 +63,23 @@ mundoChiquito:-
     findall([X, Y, Z], ternaMundoChiquito(X, Y, Z), Terna),
     imprimirPorLinea(Terna).
 
+nombreRepetido([], _):-
+    fail.
+
+nombreRepetido([Nombre | _], Nombre):-
+    !.
+
+nombreRepetido([_ | Cola], Nombre):-
+    nombreRepetido(Cola, Nombre).
+
 agregarMostro:-
     format('Vamos a agregar un mostro!!~nUn mostro consiste de nombre, nivel, atributo y poder. Los agregaremos uno por uno~nIngresa el nombre del mostro (inicia con minuscula, termina con un punto): '),
     read(Nombre),
-    mostro(M,_,_,_),
     (
         ( % nombre repetido
 
-            M == Nombre,
+            findall(M, mostro(M, _, _, _), Mostros),
+            nombreRepetido(Mostros, Nombre),
             write('Error: Ya hay un mostro con ese nombre x.x')
         );
         ( % nombre valido
@@ -139,7 +148,7 @@ agregarMostro:-
                                             write("No se agrego el mostro :(")
                                         );
                                         (   % opcion invalida
-                                        
+
                                             Seguro \= 'si',
                                             Seguro \= 'no',
                                             write("Esa no fue una opcion valida -.-")
