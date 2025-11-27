@@ -26,4 +26,9 @@
 - El caso recursivo toma la cabeza de la lista con los mostros X, Y y Z, los imprime en el formato y llama recusrivamente con la Cola de la lista.
 
 ### agregarMostro
-- Termino compuesto que solicita al usuario (con read y format) los datos para un nuevo mostro, da un mensaje donde el usuario verifica los datos del monstruo y luego de la verificaion lo agrega al inicio de la base de conocimientos (con asserta).
+- Termino compuesto que solicita al usuario (con read y format) los datos para un nuevo mostro, los va verificando mientras son ingresados bajo ciertas condiciones, da un mensaje de error cuando alguna condicion no se cumple, y da un mensaje donde el usuario verifica los datos del monstruo y luego de la verificaion lo agrega al inicio de la base de conocimientos (con asserta).
+- Las condiciones son:
+    - el nombre es único
+    - el nivel es un número entero entre 1 y 12
+    - el poder es un número entero múltiplo de 50
+    - el atributo puede ser cualquiera entre agua, fuego, viento, tierra, luz, oscuridad o divino

@@ -68,29 +68,34 @@ agregarMostro:-
     read(Nombre),
     mostro(M,_,_,_),
     (
-        (
+        ( % nombre repetido
+
             M == Nombre,
             write('Error: Ya hay un mostro con ese nombre x.x')
         );
-        (
+        ( % nombre valido
+
             write('Ingresa el nivel del mostro (debe ser un entero, termina con un punto): '),
             read(Nivel),
             (
-                (
+                ( % nivel invalido
+
                     (
-                        not(integer(Nivel));
-                        (
+                        not(integer(Nivel));    % nivel no es entero
+                        (                       % nivel no cumple con el rango
                             Nivel < 1;
                             Nivel > 12
                         )
                     ),
                     write('Error: El nivel debe ser un numero entero entre 1 y 12 x.x')
                 );
-                (
+                ( % nivel valido
+
                     write('Ingresa el atributo del mostro (inicia con minuscula, termina con un punto): '),
                     read(Atributo),
                     (
-                        (
+                        (   % atributo invalido
+
                             Atributo \= agua,
                             Atributo \= fuego,
                             Atributo \= viento,
@@ -100,38 +105,44 @@ agregarMostro:-
                             Atributo \= divino,
                             write('Error: El atributo debe ser "agua", "fuego", "viento", "tierra", "luz", "oscuridad" o "divino" x.x')
                         );
-                        (
+                        (   % atributo valido
+
                             write('Ingresa el poder del mostro (debe ser multiplo de 50, termina con un punto): '),
                             read(Poder),
                             (
-                                (
+                                (   % poder invalido
+
                                     (
-                                        not(integer(Poder));
-                                        (
+                                        not(integer(Poder));    % poder no es entero
+                                        (                       % poder no es multiplo de 50
                                             P is Poder mod 50,
                                             P \= 0
                                         )
                                     ),
                                     write('Error: El poder debe ser un entero multiplo de 50 x.x')
                                 );
-                                (
+                                (   % poder valido
+
                                     format('~nGeniail!!, agregaste el mostro "~w" de nivel "~w" con atributo "~w" y poder "~w"~n~n', [Nombre, Nivel, Atributo, Poder]),
                                     write('Estas seguro de los datos suministrados? Responde con si o no (en minusculas y termina con punto): '),
                                     read(Seguro),
                                     (
-                                        (
+                                        (   % se agrega el mostro nuevo
+
                                             Seguro == 'si',
                                             asserta(mostro(Nombre, Nivel, Atributo, Poder)),
                                             write("Mostro agregado exitosamente :)")
                                         );
-                                        (
+                                        (   % no se agrega el mostro nuevo
+
                                             Seguro == 'no',
                                             write("No se agrego el mostro :(")
                                         );
-                                        (
+                                        (   % opcion invalida
+                                        
                                             Seguro \= 'si',
                                             Seguro \= 'no',
-                                            write("No dijiste ni 'si' ni 'no'. Esa no fue una opcion valida -.-")
+                                            write("Esa no fue una opcion valida -.-")
                                         )
                                     )
                                 )
