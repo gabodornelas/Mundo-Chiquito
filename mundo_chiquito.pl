@@ -64,30 +64,71 @@ mundoChiquito:-
     imprimirPorLinea(Terna).
 
 agregarMostro:-
-    format('Vamos a agregar un mostro!!~nUn mostro consiste de nombre, nivel, atributo y poder. Los agregaremos uno por uno~nIngresa el nombre del mostro (termina con un punto): '),
+    format('Vamos a agregar un mostro!!~nUn mostro consiste de nombre, nivel, atributo y poder. Los agregaremos uno por uno~nIngresa el nombre del mostro (inicia con minuscula, termina con un punto): '),
     read(Nombre),
-    write('Ingresa el nivel del mostro (termina con un punto): '),
-    read(Nivel),
-    write('Ingresa el atributo del mostro (termina con un punto): '),
-    read(Atributo),
-    write('Ingresa el poder del mostro (termina con un punto): '),
-    read(Poder),
-    format('Geniail!!, agregaste el mostro "~w" nivel "~w" con atributo "~w" y poder "~w"~n', [Nombre, Nivel, Atributo, Poder]),
-    write('Estas seguro de los datos suministrados? Responde con si o no (en minusculas y termina con punto): '),
-    read(Seguro),
+    mostro(M,_,_,_),
     (
         (
-            Seguro == 'si',
-            asserta(mostro(Nombre, Nivel, Atributo, Poder)),
-            write("Mostro agregado exitosamente :)")
+            M == Nombre,
+            write('Error: Ya hay un mostro con ese nombre x.x')
         );
         (
-            Seguro == 'no',
-            write("No se agrego el mostro :(")
-        );
-        (
-            Seguro \= 'si',
-            Seguro \= 'no',
-            write("No dijiste ni 'si' ni 'no'. Esa no fue una opcion valida -.-")
+            write('Ingresa el nivel del mostro (debe ser un entero, termina con un punto): '),
+            read(Nivel),
+            (
+                (
+                    not(integer(Nivel)),
+                    write('Error: El nivel debe ser un numero entero x.x')
+                );
+                (
+                    write('Ingresa el atributo del mostro (inicia con minuscula, termina con un punto): '),
+                    read(Atributo),
+                    (
+                        (
+                            Atributo \= agua,
+                            Atributo \= fuego,
+                            Atributo \= viento,
+                            Atributo \= tierra,
+                            Atributo \= luz,
+                            Atributo \= oscuridad,
+                            Atributo \= divino,
+                            write('Error: El atributo debe ser agua, fuego, viento, tierra o luz x.x')
+                        );
+                        (
+                            write('Ingresa el poder del mostro (debe ser multiplo de 50, termina con un punto): '),
+                            read(Poder),
+                            P is Poder mod 50,
+                            (
+                                (
+                                    P \= 0,
+                                    write('Error: El poder debe ser multiplo de 50 x.x')
+                                );
+                                (
+                                    format('Geniail!!, agregaste el mostro "~w" nivel "~w" con atributo "~w" y poder "~w"~n', [Nombre, Nivel, Atributo, Poder]),
+                                    write('Estas seguro de los datos suministrados? Responde con si o no (en minusculas y termina con punto): '),
+                                    read(Seguro),
+                                    (
+                                        (
+                                            Seguro == 'si',
+                                            asserta(mostro(Nombre, Nivel, Atributo, Poder)),
+                                            write("Mostro agregado exitosamente :)")
+                                        );
+                                        (
+                                            Seguro == 'no',
+                                            write("No se agrego el mostro :(")
+                                        );
+                                        (
+                                            Seguro \= 'si',
+                                            Seguro \= 'no',
+                                            write("No dijiste ni 'si' ni 'no'. Esa no fue una opcion valida -.-")
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
         )
     ).
+    
