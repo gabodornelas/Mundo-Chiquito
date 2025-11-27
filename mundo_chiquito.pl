@@ -75,19 +75,19 @@ agregarMostro:-
     format('Geniail!!, agregaste el mostro "~w" nivel "~w" con atributo "~w" y poder "~w"~n', [Nombre, Nivel, Atributo, Poder]),
     write('Estas seguro de los datos suministrados? Responde con si o no (en minusculas y termina con punto): '),
     read(Seguro),
-(
     (
-        Seguro == 'si',
-        asserta(mostro(Nombre, Nivel, Atributo, Poder)),
-        write("Mostro agregado exitosamente :)")
-    );
-    (
-        Seguro == 'no',
-        write("No se agrego el mostro :("), !
-    );
-    (
-        Seguro \= 'si',
-        Seguro \= 'no',
-        write("Esa no fue una opcion valida -.-")
-    )
-).
+        (
+            Seguro == 'si',
+            asserta(mostro(Nombre, Nivel, Atributo, Poder)),
+            write("Mostro agregado exitosamente :)")
+        );
+        (
+            Seguro == 'no',
+            write("No se agrego el mostro :(")
+        );
+        (
+            Seguro \= 'si',
+            Seguro \= 'no',
+            write("No dijiste ni 'si' ni 'no'. Esa no fue una opcion valida -.-")
+        )
+    ).
