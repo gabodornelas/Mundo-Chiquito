@@ -5,11 +5,13 @@ mostro(mostroUno, 5, luz, 2100).
 mostro(mostroDos, 7, luz, 2400).
 mostro(mostroTres, 7, viento, 2500).
 
+% verifica que una caracteristica sea igual y las otras sean diferentes
 compartenUnaCaracteristica(A1, A2, A3, B1, B2, B3):-
     A1 == B1,
     A2 \= B2,
     A3 \= B3.
 
+% verifica si una terna cumple con que X y Y comparten una caracteristica y Y y Z comparten una caracteristica.
 ternaMundoChiquito(X, Y, Z):-
     mostro(X, NivelX, AtributoX, PoderX),
     mostro(Y, NivelY, AtributoY, PoderY),
@@ -53,16 +55,19 @@ ternaMundoChiquito(X, Y, Z):-
         )
     ).
 
+% imprime los elementos de la lista linea por linea
 imprimirPorLinea([]).
 
 imprimirPorLinea([[X, Y, Z] | Cola]):-
-    format('~w ~w ~w~n', [X, Y, Z]),
+    format('~w ~w ~w~n', [X, Y, Z]), 
     imprimirPorLinea(Cola).
 
+% encuentra todas las ternas y las imprime
 mundoChiquito:-
-    findall([X, Y, Z], ternaMundoChiquito(X, Y, Z), Terna),
+    findall([X, Y, Z], ternaMundoChiquito(X, Y, Z), Terna),     % encuentra todas las ternas
     imprimirPorLinea(Terna).
 
+% verifica si un nombre esta en la lista de nombres
 nombreRepetido([], _):-
     fail.
 
@@ -72,13 +77,14 @@ nombreRepetido([Nombre | _], Nombre):-
 nombreRepetido([_ | Cola], Nombre):-
     nombreRepetido(Cola, Nombre).
 
+% agrega un mostro a la base de conocimientos
 agregarMostro:-
     format('Vamos a agregar un mostro!!~nUn mostro consiste de nombre, nivel, atributo y poder. Los agregaremos uno por uno~nIngresa el nombre del mostro (inicia con minuscula, termina con un punto): '),
     read(Nombre),
     (
         ( % nombre repetido
 
-            findall(M, mostro(M, _, _, _), Mostros),
+            findall(M, mostro(M, _, _, _), Mostros),    % encuentra todos los nombres de mostros
             nombreRepetido(Mostros, Nombre),
             write('Error: Ya hay un mostro con ese nombre x.x')
         );
@@ -162,4 +168,3 @@ agregarMostro:-
             )
         )
     ).
-    
