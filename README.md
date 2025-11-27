@@ -2,7 +2,7 @@
 
 **Integrantes:**  
 - Gabriel De Ornelas — *15-10377*  
-- Blanyer Vielma — *16-11238*  
+- Blanyer Vielma —     *16-11238*  
 
 ---
 
