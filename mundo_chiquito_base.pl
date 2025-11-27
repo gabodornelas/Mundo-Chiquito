@@ -56,12 +56,23 @@ ternaMundoChiquito(X, Y, Z):-
 
 imprimirPorLinea([]).
 
-imprimirPorLinea([[X, Y, Z] | Resto]) :-
+imprimirPorLinea([[X, Y, Z] | Cola]):-
     format('~w ~w ~w~n', [X, Y, Z]),
-    imprimirPorLinea(Resto).
+    imprimirPorLinea(Cola).
 
-mundoChiquito :-
+mundoChiquito:-
     findall([X, Y, Z], ternaMundoChiquito(X, Y, Z), Terna),
     imprimirPorLinea(Terna).
 
-% agregarMostro :- ...
+agregarMostro:-
+    format('Vamos a agregar un mostro!!~nUn mostro consiste de nombre, nivel, atributo y poder. Los agregaremos uno por uno~n
+    Ingresa el nombre del mostro (termina con un punto): '),
+    read(Nombre),
+    write('Ingresa el nivel del mostro (termina con un punto): '),
+    read(Nivel),
+    write('Ingresa el atributo del mostro (termina con un punto): '),
+    read(Atributo),
+    write('Ingresa el poder del mostro (termina con un punto): '),
+    read(Poder),
+    asserta(mostro(Nombre, Nivel, Atributo, Poder)),
+    format('Geniail!!, agregaste el mostro "~w" nivel "~w" con atributo "~w" y poder "~w" !~n', [Nombre, Nivel, Atributo, Poder]).
