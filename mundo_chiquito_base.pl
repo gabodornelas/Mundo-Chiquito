@@ -53,6 +53,15 @@ ternaMundoChiquito(X, Y, Z):-
         )
     ).
 
-% mundoChiquito :- ...
+
+imprimirPorLinea([]).
+
+imprimirPorLinea([[X, Y, Z] | Resto]) :-
+    format('~w ~w ~w~n', [X, Y, Z]),
+    imprimirPorLinea(Resto).
+
+mundoChiquito :-
+    findall([X, Y, Z], ternaMundoChiquito(X, Y, Z), Terna),
+    imprimirPorLinea(Terna).
 
 % agregarMostro :- ...
