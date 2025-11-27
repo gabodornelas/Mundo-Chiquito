@@ -7,4 +7,4 @@
 ---
 
 ## Implementacion
-    Aqui va una breve explicacion de la implementacion
+Aqui va una breve explicacion de la implementacion
